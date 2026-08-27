@@ -1,0 +1,24 @@
+{
+ "id": "EVID-ctrl0005-2026-08-27T174848-51",
+ "type": "evidence",
+ "scope": "platform",
+ "state": "active",
+ "version": "1.0.0",
+ "instantiated_at": "2026-08-27T17:48:48.820181+00:00",
+ "author": "ctrl-0005",
+ "authorized_by": null,
+ "title": "the ephemeral workspace dies with the container",
+ "control_ref": "CTRL-0005",
+ "subject": "l0-agent:0.1.0@sha256:d0c6090a782d9fc845d80d229ffe548cb728a7fda7201b32bb80e7235b20ddad",
+ "verdict": "pass",
+ "checked_at": "2026-08-27T17:48:48.820181+00:00",
+ "checker": "ctrl-0005-gate-suite",
+ "detail": "exec into a killed container succeeded",
+ "cli_pin": {
+  "version": "2.1.228",
+  "platform_package": "@anthropic-ai/claude-code-linux-x64@2.1.228",
+  "binary_sha256": "d535985e6941a3eb00179ccd7f52ceb0c6623a0305a518ebc4e6514f84a94c99"
+ },
+ "bus_image": "nats@sha256:b83efabe3e7def1e0a4a31ec6e078999bb17c80363f881df35edc70fcb6bb927",
+ "supervision": []
+}

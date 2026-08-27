@@ -345,3 +345,81 @@ oversight. DEC-0005 left it so deliberately — binding a claim to a control tha
 not exist would have been the SPEC-0091 shape — and carried it in the open as a meter
 line for six days rather than hiding it. This closes it.
 <!-- atom:end id=RULE-0100 -->
+
+<!-- atom:begin id=RULE-0101 -->
+```yaml
+id: RULE-0101
+type: rule
+scope: platform
+state: active
+version: 1.2.0
+instantiated_at: "2026-08-27T17:47:02.809225+00:00"
+author: ont-060-reconciliation
+authorized_by: DEC-0011
+title: "Bind SPEC-0135 via CTRL-0012"
+tags: [binding, human-evidence]
+claim: SPEC-0135
+control: CTRL-0012
+enforcement: ENF-0004
+relations:
+  - { rel: binds, target: SPEC-0135 }
+  - { rel: binds, target: CTRL-0012 }
+  - { rel: binds, target: ENF-0004 }
+```
+SPEC-0135 was minted unbindable: `check: human` with no control that could take a
+human's verdict as input. DEC-0008 recorded that openly rather than dressing it as
+machine-checked, and this closes it — the first claim bound by the human-evidence
+primitive.
+
+ENF-0004 (advisory), not ENF-0001. The control asserts a record exists; a merge blocked
+because nobody has read a provider's self-description yet would be a gate enforcing a
+reading schedule rather than a property of the code.
+<!-- atom:end id=RULE-0101 -->
+
+<!-- atom:begin id=RULE-0102 -->
+```yaml
+id: RULE-0102
+type: rule
+scope: platform
+state: active
+version: 1.2.0
+instantiated_at: "2026-08-27T17:47:02.809225+00:00"
+author: ont-060-reconciliation
+authorized_by: DEC-0011
+title: "Bind SPEC-0116 via CTRL-0012"
+tags: [binding, human-evidence]
+claim: SPEC-0116
+control: CTRL-0012
+enforcement: ENF-0001
+relations:
+  - { rel: binds, target: SPEC-0116 }
+  - { rel: binds, target: CTRL-0012 }
+  - { rel: binds, target: ENF-0001 }
+```
+<!-- atom:end id=RULE-0102 -->
+
+<!-- atom:begin id=RULE-0103 -->
+```yaml
+id: RULE-0103
+type: rule
+scope: platform
+state: active
+version: 1.2.0
+instantiated_at: "2026-08-27T17:47:02.809225+00:00"
+author: ont-060-reconciliation
+authorized_by: DEC-0011
+title: "Bind SPEC-0117 via CTRL-0012"
+tags: [binding, human-evidence]
+claim: SPEC-0117
+control: CTRL-0012
+enforcement: ENF-0001
+relations:
+  - { rel: binds, target: SPEC-0117 }
+  - { rel: binds, target: CTRL-0012 }
+  - { rel: binds, target: ENF-0001 }
+```
+CTRL-0012's fixtures are what check both claims: SPEC-0116's refusals — no automated
+path to a human verdict — and SPEC-0117's content-addressed staleness. The half of
+SPEC-0117 that CTRL-0012 cannot check is the owner's reviewing pass over the eleven,
+which is a story-completion fact rather than a control's job.
+<!-- atom:end id=RULE-0103 -->

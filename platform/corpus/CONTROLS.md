@@ -219,3 +219,30 @@ declaration against measurement for the version, measurement against measurement
 the binary. A wrapper bump that silently swaps the executable underneath a fixed
 version string is then a finding rather than a pin that still reads correctly.
 <!-- atom:end id=CTRL-0011 -->
+
+<!-- atom:begin id=CTRL-0012 -->
+```yaml
+id: CTRL-0012
+type: control
+scope: platform
+state: active
+version: 1.2.0
+instantiated_at: "2026-08-27T17:47:02.809225+00:00"
+author: ont-060-reconciliation
+authorized_by: DEC-0011
+title: "human-evidence primitive"
+tags: [enforcement-plane, human-evidence]
+target: artifact
+implementation: tools/human_evidence.py
+```
+The control that makes a `check: human` claim bindable. It asserts that a
+human-evidence record exists for the claim, names a human, and is current against the
+corpus digest it covers — and it asserts nothing about the judgment inside, which is
+the human's and which no control can grade.
+
+Emission has no automated path: the emitter refuses a `check: machine` claim, refuses
+a missing or empty checker with no default and no derivation from git config, and
+refuses a claim that resolves to nothing. Staleness is content-addressed rather than
+scheduled: a record covers the digest it names, and stops covering a corpus that has
+moved.
+<!-- atom:end id=CTRL-0012 -->

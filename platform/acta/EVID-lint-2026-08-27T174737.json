@@ -1,0 +1,17 @@
+{
+ "id": "EVID-lint-2026-08-27T174737",
+ "type": "evidence",
+ "scope": "platform",
+ "state": "active",
+ "version": "1.0.0",
+ "instantiated_at": "2026-08-27T17:47:37.927825+00:00",
+ "author": "ctrl-0001-atom-lint",
+ "authorized_by": null,
+ "title": "atom-lint run over 0 atoms",
+ "control_ref": "CTRL-0001",
+ "subject": "corpus@e3b0c44298fc1c14#atoms=0",
+ "verdict": "fail",
+ "checked_at": "2026-08-27T17:47:37.927825+00:00",
+ "checker": "ctrl-0001-atom-lint",
+ "reason": "empty-input"
+}

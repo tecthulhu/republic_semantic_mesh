@@ -504,10 +504,10 @@ is a design.
 id: SPEC-0135
 type: specification
 scope: platform
-state: ratified
-version: 1.1.0
-instantiated_at: "2026-08-20T16:44:09.366528+00:00"
-author: agent-worker-dec-0008
+state: active
+version: 1.2.0
+instantiated_at: "2026-08-27T17:47:02.809225+00:00"
+author: ont-060-reconciliation
 authorized_by: DEC-0008
 title: "The principal-verifier port: one contract, swappable providers, declared strength"
 tags: [ferry, identity, principal, provider-port, truth-level]
