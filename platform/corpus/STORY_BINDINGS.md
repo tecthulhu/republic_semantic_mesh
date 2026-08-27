@@ -351,11 +351,11 @@ line for six days rather than hiding it. This closes it.
 id: RULE-0101
 type: rule
 scope: platform
-state: proposed
-version: 1.0.0
-instantiated_at: "2026-08-27T18:00:00Z"
+state: ratified
+version: 1.1.0
+instantiated_at: "2026-08-27T17:47:01.653057+00:00"
 author: agent-worker-story-0010
-authorized_by: null
+authorized_by: DEC-0011
 title: "Bind SPEC-0135 via CTRL-0012"
 tags: [binding, human-evidence]
 claim: SPEC-0135
@@ -381,11 +381,11 @@ reading schedule rather than a property of the code.
 id: RULE-0102
 type: rule
 scope: platform
-state: proposed
-version: 1.0.0
-instantiated_at: "2026-08-27T18:00:00Z"
+state: ratified
+version: 1.1.0
+instantiated_at: "2026-08-27T17:47:01.653057+00:00"
 author: agent-worker-story-0010
-authorized_by: null
+authorized_by: DEC-0011
 title: "Bind SPEC-0116 via CTRL-0012"
 tags: [binding, human-evidence]
 claim: SPEC-0116
@@ -403,11 +403,11 @@ relations:
 id: RULE-0103
 type: rule
 scope: platform
-state: proposed
-version: 1.0.0
-instantiated_at: "2026-08-27T18:00:00Z"
+state: ratified
+version: 1.1.0
+instantiated_at: "2026-08-27T17:47:01.653057+00:00"
 author: agent-worker-story-0010
-authorized_by: null
+authorized_by: DEC-0011
 title: "Bind SPEC-0117 via CTRL-0012"
 tags: [binding, human-evidence]
 claim: SPEC-0117

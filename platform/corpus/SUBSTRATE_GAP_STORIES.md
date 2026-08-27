@@ -41,11 +41,11 @@ machinery already built rather than adding a parallel one.
 id: SPEC-0116
 type: specification
 scope: story:story-0010
-state: proposed
-version: 1.0.0
-instantiated_at: "2026-08-12T21:00:00Z"
+state: ratified
+version: 1.1.0
+instantiated_at: "2026-08-27T17:47:01.653057+00:00"
 author: agent-worker-story-0009
-authorized_by: null
+authorized_by: DEC-0011
 title: "Human-evidence records exist, are signed acts, and cannot be auto-emitted"
 tags: [acceptance-criterion]
 binding: checked
@@ -66,11 +66,11 @@ is — no new authority mechanism is invented.
 id: SPEC-0117
 type: specification
 scope: story:story-0010
-state: proposed
-version: 1.0.0
-instantiated_at: "2026-08-12T21:00:00Z"
+state: ratified
+version: 1.1.0
+instantiated_at: "2026-08-27T17:47:01.653057+00:00"
 author: agent-worker-story-0009
-authorized_by: null
+authorized_by: DEC-0011
 title: "Human evidence goes stale on drift, and the eleven claims are evidenced once"
 tags: [acceptance-criterion]
 binding: checked
