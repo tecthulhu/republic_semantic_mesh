@@ -1,0 +1,59 @@
+{
+ "id": "PROV-spawn-STORY-0002-2026-08-27T174809",
+ "type": "provenance-link",
+ "scope": "platform",
+ "state": "active",
+ "version": "1.0.0",
+ "instantiated_at": "2026-08-27T17:48:09.299658+00:00",
+ "author": "harness:spawn-probe",
+ "authorized_by": null,
+ "title": "spawn act: STORY-0002 pinned at v1.4.0 with 6 acceptance instance(s)",
+ "directive": "spawn against STORY-0002",
+ "actor": "harness:spawn-probe",
+ "story_ref": {
+  "id": "STORY-0002",
+  "version": "1.4.0",
+  "instantiated_at": "2026-08-14T05:55:28.534619+00:00"
+ },
+ "artifacts": [
+  "SPEC-0081@1.3.0@2026-08-14T05:55:28.534619+00:00",
+  "SPEC-0082@1.2.0@2026-08-14T05:55:28.534619+00:00",
+  "SPEC-0083@1.2.0@2026-08-14T05:55:28.534619+00:00",
+  "SPEC-0084@1.2.0@2026-08-14T05:55:28.534619+00:00",
+  "SPEC-0085@1.2.0@2026-08-14T05:55:28.534619+00:00",
+  "SPEC-0086@1.3.0@2026-08-21T01:58:20.663072+00:00"
+ ],
+ "acceptance_pinned": [
+  {
+   "id": "SPEC-0081",
+   "version": "1.3.0",
+   "instantiated_at": "2026-08-14T05:55:28.534619+00:00"
+  },
+  {
+   "id": "SPEC-0082",
+   "version": "1.2.0",
+   "instantiated_at": "2026-08-14T05:55:28.534619+00:00"
+  },
+  {
+   "id": "SPEC-0083",
+   "version": "1.2.0",
+   "instantiated_at": "2026-08-14T05:55:28.534619+00:00"
+  },
+  {
+   "id": "SPEC-0084",
+   "version": "1.2.0",
+   "instantiated_at": "2026-08-14T05:55:28.534619+00:00"
+  },
+  {
+   "id": "SPEC-0085",
+   "version": "1.2.0",
+   "instantiated_at": "2026-08-14T05:55:28.534619+00:00"
+  },
+  {
+   "id": "SPEC-0086",
+   "version": "1.3.0",
+   "instantiated_at": "2026-08-21T01:58:20.663072+00:00"
+  }
+ ],
+ "acceptance_digest": "f996f164c55b25fd"
+}
