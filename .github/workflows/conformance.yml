@@ -83,6 +83,12 @@ jobs:
         working-directory: platform
         run: python tools/test_provenance.py
 
+      # SPEC-0116/0117: the human-evidence primitive. No automated path to a human
+      # verdict, and content-addressed staleness.
+      - name: SPEC-0116/0117 — human-evidence fixtures
+        working-directory: platform
+        run: python tools/test_human_evidence.py
+
       # SPEC-0086: the CLI pin, checked at last. Declaration against measurement for
       # the version; measurement against measurement for the binary.
       - name: SPEC-0086 — CLI pin check and fixtures
