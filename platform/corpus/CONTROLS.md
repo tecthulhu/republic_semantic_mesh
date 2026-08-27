@@ -225,10 +225,10 @@ version string is then a finding rather than a pin that still reads correctly.
 id: CTRL-0012
 type: control
 scope: platform
-state: ratified
-version: 1.1.0
-instantiated_at: "2026-08-27T17:47:01.653057+00:00"
-author: agent-worker-story-0010
+state: active
+version: 1.2.0
+instantiated_at: "2026-08-27T17:47:02.809225+00:00"
+author: ont-060-reconciliation
 authorized_by: DEC-0011
 title: "human-evidence primitive"
 tags: [enforcement-plane, human-evidence]
