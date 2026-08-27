@@ -1,0 +1,31 @@
+{
+ "id": "EVID-ctrl0010-2026-08-27T195631",
+ "type": "evidence",
+ "scope": "platform",
+ "state": "active",
+ "version": "1.0.0",
+ "instantiated_at": "2026-08-27T19:56:31.149039+00:00",
+ "author": "ctrl-0010",
+ "authorized_by": null,
+ "title": "ingest structure over 57 file(s): 1 violation(s)",
+ "control_ref": "CTRL-0010",
+ "subject": "ingest@1f18fe0f6b44762d#files=57",
+ "verdict": "fail",
+ "checked_at": "2026-08-27T19:56:31.149039+00:00",
+ "checker": "ctrl-0010-ingest-lint",
+ "ingest_root": "/home/tecthulhu/tecthulhu/atomic_ingest",
+ "counts": {
+  "proposed": 0,
+  "active": 0,
+  "executed": 41,
+  "parked": 2,
+  "withdrawn": 2,
+  "artifacts": 12
+ },
+ "findings": [
+  "executed/MANIFEST_story0010_go_AUTH_RECORD.json: no `<!-- ingest: TYPE -->` marker in the first 10 lines \u2014 type is declared, never inferred from a filename (one of: artifact, decision, initiator, instruction, manifest, plan, posture)"
+ ],
+ "posture": "the ingest tree lives outside the repository, so no CI gate runs this \u2014 a control without enforcement until the tree is tracked somewhere CI can read (SPEC-0131)",
+ "state_coherence": "checked",
+ "referenced_files": 25
+}
