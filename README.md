@@ -37,6 +37,19 @@ Reported honestly, from the repository — including what doesn't run yet.
 
 **Not yet:** the full end-to-end chain run (C1) joining every step, the semantic retrieval instrument (currently lexical), and the consult-and-render services. These are named, not hidden — see the whitepaper's §7 and §8.
 
+## Setup
+
+This repository carries structure; your machine carries its bindings. One command
+establishes them:
+
+```
+python3 platform/tools/setup_local.py
+```
+
+Every binding — what it does, how it resolves, which template exists — is enumerated in
+[`docs/LOCAL_CONFIGURATION.md`](./docs/LOCAL_CONFIGURATION.md), and a gate check fails
+if that list ever drifts from what the tooling actually reads.
+
 ## Verify rather than trust
 
 The whole point is that you don't have to take this document's word for it:

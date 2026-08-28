@@ -49,11 +49,35 @@ STORY = "story-0002"
 CITIZEN = "spawn-probe"
 
 
+# A5: runtime-captured text is sanitised before it can reach an evidence row.
+#
+# The sweep found 24 rows carrying the container runtime's data-root path, quoted out
+# of `docker inspect` into a detail string. Nothing wrote it as configuration — it
+# arrived as a *quotation from the machine*, which is the variant the original finding
+# did not anticipate and the one that regenerates on every gate run. An emitter that
+# only sanitises its own fields keeps re-committing whatever it repeats.
+HOST_PATH = re.compile(r'(/(?:home|Users)/[^"\s,:]+|(?<![\w.])~/[^"\s,:]+)')
+
+
+def sanitise(text):
+    """Replace absolute machine paths with a role alias, preserving the leaf.
+
+    The leaf is kept because it is what the assertion is usually about — a volume
+    name, a file that should or should not exist — while the machine-specific prefix
+    is the part that is nobody's business and true only on one host.
+    """
+    def sub(m):
+        leaf = m.group(0).rstrip("/").rsplit("/", 1)[-1]
+        return f"<host-path>/{leaf}" if leaf else "<host-path>"
+    return HOST_PATH.sub(sub, str(text))
+
+
 class Results:
     def __init__(self):
         self.rows = []
 
     def record(self, ac, verdict, detail=""):
+        detail = sanitise(detail)
         self.rows.append({"ac": ac, "verdict": verdict, "detail": detail})
         print(f"  {verdict.upper():4}  {ac}{'' if verdict == 'pass' else '  — ' + str(detail)[:280]}")
 
@@ -1004,14 +1028,39 @@ def io_path_checks(mesh, image, res):
 # re-run against another provider as a portability check. Every evidence row names
 # which, because "supervision works" is a different claim from "supervision works
 # against the provider this platform pins".
+def _provider_key_path(provider):
+    """Where a provider's credential lives — resolved, never guessed.
+
+    A1: the literal paths that used to sit here were a public map to private
+    credentials on a named host. Resolution order is env var, then a gitignored local
+    file, then a clear error naming the setup tool. There is deliberately no default:
+    a guessed home path is exactly the machine-truth this repository must not carry,
+    and a tool that guesses one is a tool that re-commits it the next time someone
+    copies the pattern.
+    """
+    env = os.environ.get(f"REPUBLIC_API_KEY_{provider.upper()}")
+    if env:
+        return env, "env"
+    local = pathlib.Path(__file__).resolve().parents[2] / "tools" / "providers.local.json"
+    if local.is_file():
+        try:
+            entry = json.loads(local.read_text()).get(provider) or {}
+        except ValueError as e:
+            raise RuntimeError(f"{local.name} is not valid JSON: {e}")
+        if entry.get("key_file"):
+            return entry["key_file"], "local-config"
+    raise RuntimeError(
+        f"no credential location for {provider!r}: set REPUBLIC_API_KEY_{provider.upper()} "
+        f"or run `python3 tools/setup_local.py` to write tools/providers.local.json")
+
+
 PROVIDERS = {
-    "anthropic": {"key_file": "~/tecthulhu/.republic_anthropic_api_key",
-                  "upstream": "https://api.anthropic.com", "auth_style": "x-api-key",
+    "anthropic": {"upstream": "https://api.anthropic.com", "auth_style": "x-api-key",
                   "model": "claude-haiku-4-5-20251001", "band": "B1",
                   "role": "acceptance"},
-    "deepseek": {"key_file": "~/tecthulhu/.republic_deepseek_api_key",
-                 "upstream": "https://api.deepseek.com/anthropic", "auth_style": "bearer",
-                 "model": "deepseek-chat", "band": "B1", "role": "portability"},
+    "deepseek": {"upstream": "https://api.deepseek.com/anthropic", "auth_style": "bearer",
+                 "model": "deepseek-chat", "band": "B1",
+                 "role": "portability"},
 }
 
 
@@ -1026,9 +1075,15 @@ def start_adapter(mesh, image, provider):
     """The credential boundary (D47): the proxy holds the key on an egress-capable
     network, the agent stays internal and keyless."""
     cfg = PROVIDERS[provider]
-    key_src = pathlib.Path(cfg["key_file"]).expanduser()
+    try:
+        key_path, source = _provider_key_path(provider)
+    except RuntimeError as e:
+        return None, str(e)
+    key_src = pathlib.Path(key_path).expanduser()
     if not key_src.is_file():
-        return None, f"no credential at {cfg['key_file']}"
+        # The path is never echoed: reporting where a credential was expected is the
+        # same disclosure as committing it, one step later.
+        return None, f"credential for {provider!r} not found at its {source} location"
 
     vol = mesh.track_volume(f"adapterkey-{mesh.tag}-{provider}")
     sh("docker", "volume", "create", vol, check=True)
