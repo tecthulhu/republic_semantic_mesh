@@ -1,0 +1,5 @@
+{
+  "_comment": "Copy to providers.local.json (gitignored) or run: python3 tools/setup_local.py",
+  "anthropic": { "key_file": "<path-to-your-anthropic-key-file>" },
+  "deepseek":  { "key_file": "<path-to-your-deepseek-key-file>" }
+}

@@ -70,3 +70,7 @@ Thumbs.db
 
 # --- Claude Code local state (project settings are shared; local overrides are not) ---
 .claude/settings.local.json
+
+# A6/A7 — machine bindings. The repo carries structure; machines carry bindings.
+platform/tools/providers.local.json
+platform/tools/hosts.denylist

@@ -1,0 +1,6 @@
+# Host names CTRL-0013 class 4 refuses in committed content.
+# Copy to hosts.denylist (gitignored). One per line. Placeholders only in this file:
+# a committed denylist naming real hosts would itself be the leak this control exists
+# to prevent.
+<your-workstation-hostname>
+<your-server-hostname>

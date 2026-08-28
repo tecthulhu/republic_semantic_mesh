@@ -246,3 +246,30 @@ refuses a claim that resolves to nothing. Staleness is content-addressed rather 
 scheduled: a record covers the digest it names, and stops covering a corpus that has
 moved.
 <!-- atom:end id=CTRL-0012 -->
+
+<!-- atom:begin id=CTRL-0013 -->
+```yaml
+id: CTRL-0013
+type: control
+scope: platform
+state: proposed
+version: 1.0.0
+instantiated_at: "2026-08-28T12:00:00Z"
+author: agent-worker-topology
+authorized_by: null
+title: "topology-hygiene control"
+tags: [enforcement-plane, security, machine-truth]
+target: codebase
+implementation: tools/topology_lint.py
+```
+Five classes over committed content: secret material, credential-file locations,
+machine-local paths, host bindings from a gitignored denylist, and bindings the tooling
+resolves without a documented row.
+
+Classes 1–3 are generic patterns and ship here. Class 4 is instance data and stays
+local, because a committed denylist naming real hosts would itself be the leak. Class 5
+keeps `docs/LOCAL_CONFIGURATION.md` permanently true rather than true once.
+
+Exemptions are per-line and carry a reason, so deliberate cases pass on the record
+rather than silently.
+<!-- atom:end id=CTRL-0013 -->

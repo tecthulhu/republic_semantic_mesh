@@ -23,7 +23,8 @@ ingest tree in a repository CI can read, which is the floor's call and is named 
 gap rather than papered over (SPEC-0131).
 
 Usage:
-    python3 tools/ingest_lint.py [--root ~/tecthulhu/atomic_ingest]
+    REPUBLIC_INGEST_ROOT=<ingest-root> python3 tools/ingest_lint.py
+    python3 tools/ingest_lint.py --root <ingest-root>
 """
 import argparse
 import datetime
@@ -38,7 +39,10 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
 from paths import ACTA  # noqa: E402
 
-DEFAULT_ROOT = pathlib.Path("~/tecthulhu/atomic_ingest").expanduser()
+# A2: no default. An unset binding is a named error, never a guessed home path — the
+# guess is what put machine-truth in this file in the first place, and a tool that
+# guesses teaches the next tool to guess.
+INGEST_ROOT_ENV = "REPUBLIC_INGEST_ROOT"
 
 # The instruction lifecycle, as folders. This is the atom `state` field wearing a
 # directory for a hat, which is why one file may appear in exactly one of them.
@@ -314,7 +318,9 @@ def emit(root, entries, findings, out_dir, extra=None):
             "subject": f"ingest@{digest_of(entries)}#files={len(entries)}",
             "verdict": "pass" if not findings else "fail",
             "checked_at": now, "checker": "ctrl-0010-ingest-lint",
-            "ingest_root": str(root),
+            # A5: a role alias, not a path. An evidence row records what was checked,
+            # and "which directory on whose laptop" is not part of that claim.
+            "ingest_root": "reception:ingest",
             "counts": counts(entries),
             "findings": findings,
             # SPEC-0131's declared gap, carried on every row rather than in a comment
@@ -332,7 +338,7 @@ def emit(root, entries, findings, out_dir, extra=None):
 
 def main():
     ap = argparse.ArgumentParser(description="ingest structure lint (CTRL-0010)")
-    ap.add_argument("--root", default=os.environ.get("INGEST_ROOT", str(DEFAULT_ROOT)))
+    ap.add_argument("--root", default=os.environ.get(INGEST_ROOT_ENV))
     ap.add_argument("--evidence-dir", default=str(ACTA))
     ap.add_argument("--no-evidence", action="store_true")
     ap.add_argument("--repo", default="tecthulhu/republic",
@@ -343,6 +349,10 @@ def main():
                          "that passed it must not look alike")
     a = ap.parse_args()
 
+    if not a.root:
+        print(f"FAIL — no ingest root: set {INGEST_ROOT_ENV} or pass --root <ingest-root>. "
+              f"`python3 tools/setup_local.py` writes it for you.")
+        return 1
     root = pathlib.Path(a.root).expanduser()
     if not root.is_dir():
         print(f"FAIL — ingest root does not exist: {root}")

@@ -83,6 +83,14 @@ jobs:
         working-directory: platform
         run: python tools/test_provenance.py
 
+      # SPEC-0136: topology hygiene. Blocking — the class this closes reached the
+      # public repo once already, and a check that only warns would let it back.
+      - name: SPEC-0136 — topology-hygiene control and fixtures
+        working-directory: platform
+        run: |
+          python tools/test_topology_lint.py
+          python tools/topology_lint.py --no-evidence
+
       # SPEC-0116/0117: the human-evidence primitive. No automated path to a human
       # verdict, and content-addressed staleness.
       - name: SPEC-0116/0117 — human-evidence fixtures

@@ -423,3 +423,67 @@ path to a human verdict — and SPEC-0117's content-addressed staleness. The hal
 SPEC-0117 that CTRL-0012 cannot check is the owner's reviewing pass over the eleven,
 which is a story-completion fact rather than a control's job.
 <!-- atom:end id=RULE-0103 -->
+
+<!-- atom:begin id=SPEC-0136 -->
+```yaml
+id: SPEC-0136
+type: specification
+scope: platform
+state: proposed
+version: 1.0.0
+instantiated_at: "2026-08-28T12:00:00Z"
+author: agent-worker-topology
+authorized_by: null
+title: "The repo carries structure; machines carry bindings"
+tags: [acceptance-criterion, security, machine-truth, topology]
+binding: checked
+check: machine
+```
+No committed content names a real host, home directory, or credential location. Every
+machine-binding resolves **env var → gitignored local file → a named error**, never a
+guessed default — the guess is how machine-truth was committed in the first place, and
+a tool that guesses teaches the next tool to guess.
+
+Every binding carries a row in `docs/LOCAL_CONFIGURATION.md`, and a binding the tooling
+resolves without one fails the gate, so the enumeration stays true rather than having
+been true once.
+
+**Custody references, fix-forward.** Repo-side references to a shipping machine name the
+**fingerprint and enrollment date only**; host names live solely in the reception-side
+register. The three DEC records already carrying host names are `immutable-leave` under
+R2 — receipts stay receipts — and this rule governs everything written after.
+
+Evidence rows carry no machine-truth: an emitter records a role alias, and text captured
+from the runtime is sanitised before it can reach a row. That second half is the variant
+the finding did not anticipate — a path nobody wrote as configuration, quoted out of
+`docker inspect` into a detail string, regenerating on every gate run.
+
+Fixtures prove each class fires and that the look-alikes do not: container addresses,
+repo-relative paths, dot-directory tool layout, and words containing "key" or "token".
+A control that fired on those would be switched off, and a control that is off is worse
+than none because it also carries the appearance of coverage.
+<!-- atom:end id=SPEC-0136 -->
+
+<!-- atom:begin id=RULE-0104 -->
+```yaml
+id: RULE-0104
+type: rule
+scope: platform
+state: proposed
+version: 1.0.0
+instantiated_at: "2026-08-28T12:00:00Z"
+author: agent-worker-topology
+authorized_by: null
+title: "Bind SPEC-0136 via CTRL-0013"
+tags: [binding, security]
+claim: SPEC-0136
+control: CTRL-0013
+enforcement: ENF-0001
+relations:
+  - { rel: binds, target: SPEC-0136 }
+  - { rel: binds, target: CTRL-0013 }
+  - { rel: binds, target: ENF-0001 }
+```
+ENF-0001. The class reached the public repository once; a control that only warned
+would let it back.
+<!-- atom:end id=RULE-0104 -->
